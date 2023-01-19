@@ -9,11 +9,9 @@ function HomePage() {
 
 return (
     <>
+      <div><OrderTotal/></div>
       <h1> Home Page</h1>
       <div><FetchPizza/></div>
-      <div><OrderTotal/></div>
-      <div><AddOrder/></div>
-      <div><RemoveOrder/></div>
       <button>next Page</button>
     </>
   )

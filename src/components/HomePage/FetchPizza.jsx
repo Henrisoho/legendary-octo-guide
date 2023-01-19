@@ -1,13 +1,24 @@
 import React from "react";
+import AddOrder from "./AddOrder";
+import RemoveOrder from "./RemoveOrder";
 
 function FetchPizza() {
 
 
 return (
     <>
-      Pizza will render here
+    fetch the pizza information here
+    
+        <form action="order pizza">
+
+
+
+
+            <button><AddOrder /></button>
+            <button><RemoveOrder /></button>
+        </form>
     </>
-  )
+)
 }
 
 
