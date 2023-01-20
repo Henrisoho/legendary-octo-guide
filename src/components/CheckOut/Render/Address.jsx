@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PizzaCards from './PizzaCards';
 
 function showAddress() {
+    const needReduxStore = useSelector((store) => store.Redux);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -16,20 +17,19 @@ function showAddress() {
         })
             .then((response) => {
                 dispatch({
-                    type: 'what is this part??',
-                    payload: response.data, 
+                    type: 'what is the type?',
+                    payload: response.data,
                 });
             })
             .catch((err) => {
-                console.error('BookList useEffect fail:', err);
+                console.error(
+                    'error happened in the showAddress axios get. ',
+                    err
+                );
             });
     }, []);
 
-    return (
-        <section>
-            
-        </section>
-    );
+
 }
 
 export default showAddress;
