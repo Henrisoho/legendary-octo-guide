@@ -8,7 +8,18 @@ import { applyMiddleware, createStore, combineReducers } from 'redux';
 import {logger} from 'redux-logger'
 
 //ADD ITEM//
-
+const cartAddRem = (state = [], action) => {
+    switch (action.type) {
+      case 'SET_CART':
+        return action.payload;
+     case 'REMOVE_PIZZA_FROM_ORDER':
+        return state.filter(pizza => pizza.id !== action.payload.id)
+    case 'ADD_PIZZA_TO_ORDER':
+        return [...state, action.payload]
+      default:
+        return state;
+    }
+}
 //END ADD ITEM//
 
 
@@ -21,13 +32,13 @@ const menuList = (state = [], action) => {
       return state;
   } 
 }
-
 //RENDER MENU LIST//
 
 //STORE//
 const pizzaStore = createStore(
   combineReducers({
-    menuList
+    menuList,
+    cartAddRem
   }),
   applyMiddleware(
     logger

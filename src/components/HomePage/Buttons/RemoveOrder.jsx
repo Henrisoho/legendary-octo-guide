@@ -1,23 +1,23 @@
 import React from "react";
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, } from 'react-redux';
 import { Button } from '@mui/material';
 
 function RemoveOrder({pizza}) {
-const remove = () => {
-    axios({
-      method: 'DELETE',
-      url: `/api/order/${pizza.id}`
-    }).then((response) => {
-      console.log(response)
-    }).catch((err) => {
-      console.error('pizza didnt delete:', err);
-    })
-  }
+const dispatch = useDispatch()
 
+const onRemove = (event) =>{
+  dispatch({
+        type: 'REMOVE_PIZZA_FROM_ORDER',
+        payload: {
+          pizza_id: pizza.id,
+          quantity: 1
+        }
+      })
+}
 return (
     <>
-     <Button variant="contained" onClick={remove}> Remove </Button>
+     <Button variant="contained" onClick={onRemove}> Remove </Button>
     </>
   )
 }
