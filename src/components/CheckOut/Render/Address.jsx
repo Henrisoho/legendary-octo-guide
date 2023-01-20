@@ -13,13 +13,9 @@ function showAddress() {
     useEffect(() => {
         axios({
             method: 'GET',
-            url: '/api/pizza',
+            url: '/api/orders',
         })
             .then((response) => {
-                dispatch({
-                    type: 'what is the type?',
-                    payload: response.data,
-                });
             })
             .catch((err) => {
                 console.error(

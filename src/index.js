@@ -22,6 +22,13 @@ const cartAddRem = (state = [], action) => {
 }
 //END ADD ITEM//
 
+//ADD ALL//
+const addTotal = (state = 0, action) => { 
+    if (action.type === 'ADD_TOTAL') {
+        return state + action.payload;
+    }
+    return state;
+}
 
 //RENDER MENU LIST
 const menuList = (state = [], action) => {
@@ -38,7 +45,8 @@ const menuList = (state = [], action) => {
 const pizzaStore = createStore(
   combineReducers({
     menuList,
-    cartAddRem
+    cartAddRem,
+    addTotal
   }),
   applyMiddleware(
     logger

@@ -8,6 +8,7 @@ function AddOrder({ pizza }) {
 const dispatch = useDispatch()
 
 const onAdd = (event) =>{
+  AddTotal
   dispatch({
         type: 'ADD_PIZZA_TO_ORDER',
         payload: {
@@ -15,6 +16,13 @@ const onAdd = (event) =>{
           quantity: 1
         }
       })
+}
+
+const AddTotal = () =>{
+  dispatch ({
+    type: 'ADD_TOTAL',
+    payload: pizza.price
+  })
 }
 
   return (

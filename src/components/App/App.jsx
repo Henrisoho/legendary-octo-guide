@@ -8,6 +8,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Admin from '../Admin/Admin';
 import Thanks from './thanks';
 
+
 function App() {
 
   return (

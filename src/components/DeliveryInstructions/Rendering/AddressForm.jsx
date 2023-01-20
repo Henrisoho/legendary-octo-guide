@@ -19,12 +19,13 @@ export default function AddressForm() {
 
 
     const cart =  useSelector(store => store.cartAddRem);
+    const total =  useSelector(store => store.planeCount);
     console.log(`in ${cart}`)
 
     const handleSubmit = event => {
     event.preventDefault();
 
-    console.log(`Adding order`, {customer_name, street_address, city, zip, type, total, pizza});
+    console.log(`Adding order`, {customer_name, street_address, city, zip, type, cart});
 
     axios({
       method: 'POST',
@@ -36,12 +37,12 @@ export default function AddressForm() {
             city: city,
             zip: zip,
             type: type,
-            total: total,
+            total: 12,
             pizzas: cart
         }
 
     }).then((response) => {
-      
+      console.log(response)
     }).catch((err) => {
       console.error('handleSubmit fail:', err)
     })
@@ -93,13 +94,20 @@ export default function AddressForm() {
                     </Box>
 
                     <Box p={4}>
+                        <Input
+                            type="text"
+                            placeholder='Delivery Or Take Out'
+                            value={type}
+                            onChange={(event) => setType(event.target.value)}
 
+                        />
                     </Box>
+                    <button type='submit'>submit</button>
                 </form>
             </Box>
             <footer>
                 <Box p={4}>
-                    <Button variant="contained" onClick={() => { history.push('/checkout') }}>Next</Button>
+                    <Button type="submit" variant="contained" onClick={() => { history.push('/checkout') }}>Next</Button>
                 </Box>
             </footer>
         </>
