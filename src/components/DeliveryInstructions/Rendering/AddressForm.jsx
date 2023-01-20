@@ -3,14 +3,13 @@ import Input from '@mui/material/Input';
 import { useHistory } from 'react-router-dom';
 import { Button, Box } from '@mui/material';
 import { useState } from 'react';
-
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
 
 
 export default function AddressForm() {
-    
+
     const history = useHistory();
     const [customer_name, setName] = useState('');
     const [street_address, setAddress] = useState('');
@@ -18,10 +17,41 @@ export default function AddressForm() {
     const [zip, setZip] = useState('');
     const [type, setType] = useState('');
 
+
+    const cart =  useSelector(store => store.cartAddRem);
+    console.log(`in ${cart}`)
+
+    const handleSubmit = event => {
+    event.preventDefault();
+
+    console.log(`Adding order`, {customer_name, street_address, city, zip, type, total, pizza});
+
+    axios({
+      method: 'POST',
+      url: '/api/order',
+      data: 
+        {
+            customer_name: customer_name,
+            street_address: street_address,
+            city: city,
+            zip: zip,
+            type: type,
+            total: total,
+            pizzas: cart
+        }
+
+    }).then((response) => {
+      
+    }).catch((err) => {
+      console.error('handleSubmit fail:', err)
+    })
+  };
+
+
     return (
         <>
             <Box p={3}>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <Box p={4}>
                         <Input
                             type="text"
